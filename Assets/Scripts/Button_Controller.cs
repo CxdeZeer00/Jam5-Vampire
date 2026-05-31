@@ -11,7 +11,7 @@ public class Button_Controller : MonoBehaviour
     public void Introduction()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene("Introduction");
     }
 
     //public void Menu()
