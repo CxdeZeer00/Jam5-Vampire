@@ -1,8 +1,10 @@
-using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class BloodAndGarlic : MonoBehaviour
+public class ItemFunctions : MonoBehaviour
 {
    
     //Sangre obliga a acercarse al punto donde se deja, ajo obliga a huir de ti mientras lo llevas puesto
@@ -69,8 +71,66 @@ public class BloodAndGarlic : MonoBehaviour
             }
             #endregion
 
-            
+            #region //////STAKE//////
+
+            else if (itemActual.vampireSpeed > 0) // para la estaca
+            {
+                GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+
+                if (vampiro != null)
+                {
+                    UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+                    if (agente != null)
+                    {
+                        StartCoroutine(SlowDown(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                    }
+                }
+
+            }
+            #endregion
+
+            #region //////HOLYWATER//////
+            else if (itemActual.distractedTime > 0 && itemActual.vampireSpeed > 0) // para el agua bendita
+            {
+                GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+
+                if (vampiro != null)
+                {
+                    UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+                    if (agente != null)
+                    {
+                        StartCoroutine(Angry(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                    }
+                }
+            }
+            #endregion
         }
     }
-    
+
+    IEnumerator SlowDown(UnityEngine.AI.NavMeshAgent agente)
+    {
+        agente.speed = 3.5f;
+        yield return new WaitForSeconds(2f); // espera 2 segundos y recupera su velocidad inicial
+        if (agente != null)
+        {
+            agente.speed = 7f;
+        }
+    }
+
+    IEnumerator Angry(UnityEngine.AI.NavMeshAgent agente)
+    {
+        agente.speed = 0;
+        yield return new WaitForSeconds(2f); // espera 2 segundos y acelera
+        if (agente != null)
+        {
+            agente.speed = 10.5f;
+            yield return new WaitForSeconds(2f); // vuelve a esperar 2 segundos y recupera su velocidad inicial
+            if (agente != null)
+            {
+                agente.speed = 7f;
+            }
+        }
+    }
 }
