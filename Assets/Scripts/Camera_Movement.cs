@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Camera_Movement : MonoBehaviour
+public class Camera_Movement : MonoBehaviour    //Paula Pinilla
 {
     public float Speed = 100f;
     float RotX = 0f;
