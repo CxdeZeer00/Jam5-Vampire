@@ -9,6 +9,7 @@ public class BloodAndGarlic : MonoBehaviour
     public List <Items> inventory = new List<Items>();
     
     public GameObject bloodVial;
+    public GameObject HolyWater;
     private Transform playerTransform; //Saber dónde está el jugador
 
 
@@ -67,6 +68,9 @@ public class BloodAndGarlic : MonoBehaviour
                 inventory.RemoveAt(0);
             }
             #endregion
+
+            
         }
     }
+    
 }
