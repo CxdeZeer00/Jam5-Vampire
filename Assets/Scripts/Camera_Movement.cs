@@ -17,14 +17,14 @@ public class Camera_Movement : MonoBehaviour    //Paula Pinilla
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.timeScale == 0f) return;
 
         AltCursor();
     }
 
     void AltCursor() 
     {
-        if (Input.GetKey(KeyCode.LeftAlt)) 
+        if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.Tab)) 
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
