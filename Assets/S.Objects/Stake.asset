@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4ad9e70890281c418f21737b2fbfbf2, type: 3}
-  m_Name: BloodVial
+  m_Name: Stake
   m_EditorClassIdentifier: Assembly-CSharp::Items
-  distractedTime: 5
+  distractedTime: 0
   wearingTime: 0
   healing: 0
-  vampirespeed: 0
+  vampireSpeed: 3.5
   objectIcon: {fileID: 0}
