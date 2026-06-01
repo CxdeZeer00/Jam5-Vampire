@@ -8,6 +8,11 @@ public class Button_Controller : MonoBehaviour
     public GameObject minimizeButton;
     public GameObject pauseMenu;
 
+    public void Start()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+    }
     public void Introduction()
     {
         Time.timeScale = 1f;
@@ -20,15 +25,15 @@ public class Button_Controller : MonoBehaviour
     //    SceneManager.LoadScene("MainMenu");
     //}
 
-    //public void Play()
-    //{
-    //    Time.timeScale = 1f;
-    //    pauseMenu.SetActive(false);
-    //}
+    public void Play()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+    }
 
     public void Tuto()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
 }
