@@ -17,10 +17,13 @@ public class PlayerHealth : MonoBehaviour //Tom
     public float cooldownTime = 1f; // El segundo entero de cooldown obligatorio
     private float cooldownTimer = 0f;
 
+    public GameObject deathPopUp;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
+        deathPopUp.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,6 +66,7 @@ public class PlayerHealth : MonoBehaviour //Tom
         if (currentHealth == 0f)
         {
             Debug.Log("U died.");  //Zeeroo
+            Death();
         }
     }
     public void Heal(float healing) //Garlic
@@ -75,6 +79,14 @@ public class PlayerHealth : MonoBehaviour //Tom
         }
 
         Debug.Log("Healed.");
+    }
+
+    void Death() //Zoe García
+    {
+        Time.timeScale = 0f;
+        deathPopUp.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
 
