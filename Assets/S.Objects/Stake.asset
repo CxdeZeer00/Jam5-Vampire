@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ad9e70890281c418f21737b2fbfbf2, type: 3}
   m_Name: Stake
   m_EditorClassIdentifier: Assembly-CSharp::Items
+  type: 0
   distractedTime: 0
-  wearingTime: 0
+  healAmount: 0
   healing: 0
   vampireSpeed: 3.5
-  objectIcon: {fileID: 0}
+  objectIcon: {fileID: 2124609728, guid: 49f0a660aff77d74ca45665fde9e8393, type: 3}

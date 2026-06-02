@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6542719545131186563}
   - component: {fileID: 6099280701366803498}
   - component: {fileID: 4606899136350587012}
-  - component: {fileID: 6419729120535875291}
+  - component: {fileID: 5218703625966930600}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -104,7 +104,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6419729120535875291
+--- !u!114 &5218703625966930600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,13 +113,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5579181746307201543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad5d50ee6c79304a9a7ea896977d8eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 601122ff4f2c2994997041abb22008ec, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawningitems
-  itemData: {fileID: 11400000, guid: 1a7a1ba27aaf54140a2dca8d72d83b2f, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
   availableItems:
-  - {fileID: 2893401810763984827, guid: 484532fbeee910446b343b234d63ade3, type: 3}
   - {fileID: 460622789981825533, guid: 1e756e3c026cb6f47aa5877217332f87, type: 3}
-  - {fileID: 751251878884077097, guid: 0307fec8b2c97b54c80fd0077b1d3459, type: 3}
-  - {fileID: 3789729042012149993, guid: bc4c6523e3fd09c4fbb89506f170478d, type: 3}
   - {fileID: 6753443789228859179, guid: 4e374cb14d11c4f4d9f81d5e21606308, type: 3}
+  - {fileID: 3789729042012149993, guid: bc4c6523e3fd09c4fbb89506f170478d, type: 3}
+  - {fileID: 2893401810763984827, guid: 484532fbeee910446b343b234d63ade3, type: 3}

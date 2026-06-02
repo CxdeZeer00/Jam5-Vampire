@@ -9,7 +9,14 @@ public class ItemFunctions : MonoBehaviour
    
     //Sangre obliga a acercarse al punto donde se deja, ajo obliga a huir de ti mientras lo llevas puesto
     public List <Items> inventory = new List<Items>();
-    
+
+    [Header("---Canva Inventory---")]
+    public GameObject slotStake;
+    public GameObject slotGarlic;
+    public GameObject slotHolyWater;
+    public GameObject slotBloodVial;
+    public GameObject slotKey;
+
     public GameObject bloodVial;
     public GameObject HolyWater;
     private Transform playerTransform; //Saber dónde está el jugador
@@ -29,7 +36,7 @@ public class ItemFunctions : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space) && inventory.Count > 0)
+        if (inventory.Count > 0)
         {
             Items itemActual = null;  //vairable vacía
             #region //////Buttons//////
@@ -69,6 +76,7 @@ public class ItemFunctions : MonoBehaviour
                     spawnedVial.name = "BloodAttractionPoint";
 
                     inventory.Remove(itemActual);
+                    slotBloodVial.SetActive(false);
                 }
                 #endregion
 
@@ -89,6 +97,7 @@ public class ItemFunctions : MonoBehaviour
                             playerHealth.Heal(itemActual.healAmount);
 
                             inventory.Remove(itemActual);
+                            slotGarlic.SetActive(false);
                         }
                         else //si tiene la vida al tope no te cura
                         {
@@ -114,6 +123,7 @@ public class ItemFunctions : MonoBehaviour
                         {
                             StartCoroutine(SlowDown(agente)); // corutina para poder cambiar velocidad durante unos segundos
                             inventory.Remove(itemActual);
+                            slotStake.SetActive(false);
                         }
                     }
 
@@ -135,6 +145,7 @@ public class ItemFunctions : MonoBehaviour
                         {
                             StartCoroutine(Angry(agente)); // corutina para poder cambiar velocidad durante unos segundos
                             inventory.Remove(itemActual);
+                            slotHolyWater.SetActive(false);
                         }
                     }
                 }
@@ -165,6 +176,37 @@ public class ItemFunctions : MonoBehaviour
             {
                 agente.speed = 7f;
             }
+        }
+    }
+
+    public void PickItem(Items newItem) //Zoe
+    {
+        inventory.Add(newItem);
+        Debug.Log($"[MOCHILA] Guardado con éxito. Total de ítems en mochila: {inventory.Count}");
+        if (newItem.type == KindOfItem.BloodVial)
+        {
+            Debug.Log("-> UI: Activando imagen de la Sangre");
+            if (slotBloodVial != null) slotBloodVial.SetActive(true);
+        }
+        else if (newItem.type == KindOfItem.Garlic)
+        {
+            Debug.Log("-> UI: Activando imagen del Ajo");
+            if (slotGarlic != null) slotGarlic.SetActive(true);
+        }
+        else if (newItem.type == KindOfItem.Stake)
+        {
+            Debug.Log("-> UI: Activando imagen de la Estaca");
+            if (slotStake != null) slotStake.SetActive(true);
+        }
+        else if (newItem.type == KindOfItem.HolyWater)
+        {
+            Debug.Log("-> UI: Activando imagen del Agua Bendita");
+            if (slotHolyWater != null) slotHolyWater.SetActive(true);
+        }
+        else if (newItem.type == KindOfItem.Key)
+        {
+            Debug.Log("-> UI: Activando imagen de la Llave ¡A ESCAPAR!");
+            if (slotKey != null) slotKey.SetActive(true);
         }
     }
 }

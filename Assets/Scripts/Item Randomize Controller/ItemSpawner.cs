@@ -18,7 +18,10 @@ public class ItemSpawner : MonoBehaviour
     // Update is called once per frame
     public void KeyItem(GameObject prefabKey)
     {
-        Instantiate(prefabKey, transform.position, Quaternion.identity);
+        if(prefabKey != null)
+        {
+            Instantiate(prefabKey, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

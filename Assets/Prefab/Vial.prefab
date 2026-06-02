@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4520273341977968188}
   - component: {fileID: 8114186898302458753}
   - component: {fileID: 2723280759351734711}
+  - component: {fileID: 6315976159691305533}
   m_Layer: 0
   m_Name: Vial
   m_TagString: Untagged
@@ -106,7 +107,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -114,3 +115,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6315976159691305533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2893401810763984827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad5d50ee6c79304a9a7ea896977d8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spawningitems
+  itemData: {fileID: 11400000, guid: 25d7f228f7a3ec544b43082279a1ee6a, type: 2}

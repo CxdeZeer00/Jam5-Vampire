@@ -17,15 +17,16 @@ public class Spawningitems : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("Algo ha entrado en mi zona: " + collision.gameObject.name);
         if (collision.CompareTag("Player"))
         {
             // Buscamos el script de la mochila en el jugador
             ItemFunctions mochila = collision.GetComponent<ItemFunctions>();
 
-            if (mochila != null)
+            if (mochila != null && itemData != null)
             {
                 // Añadimos los DATOS a la lista del inventario
-                mochila.inventory.Add(itemData);
+                mochila.PickItem(itemData);
                 Debug.Log("Recogido: " + itemData.name);
 
                 Destroy(gameObject);
