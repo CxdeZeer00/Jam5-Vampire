@@ -30,92 +30,116 @@ public class ItemFunctions : MonoBehaviour
     {
         
         if (Input.GetKeyDown(KeyCode.Space) && inventory.Count > 0)
-        {        
-            Items itemActual = inventory[0];  // Primer ítem que haya en la lista de inventario
-
-            #region //////BLOOD////// 
-            //Tom
-
-            if (itemActual.distractedTime > 0) 
+        {
+            Items itemActual = null;  //vairable vacía
+            #region //////Buttons//////
+            //Zoe García
+            //hagamos q el player tenga elección en qué item usar (numericos)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Debug.Log("Dejar en el suelo. Tiempo de distracción: " + itemActual.distractedTime);
-
-                GameObject spawnedVial = Instantiate(bloodVial, playerTransform.position, Quaternion.identity); // Dejar frasco en la posición donde estaba el jugador
-
-                CircleCollider2D attractionArea = spawnedVial.AddComponent<CircleCollider2D>();  //Crear un collider para "cambiar el target" del NavMesh
-                attractionArea.isTrigger = true;
-                attractionArea.radius = 5f;
-                spawnedVial.name = "BloodAttractionPoint";
-
-                inventory.RemoveAt(0); 
+                itemActual = inventory.Find(i => i.vampireSpeed > 0 && i.distractedTime == 0);
             }
-            #endregion 
-
-            #region /////GARLIC/////
-            //Tom
-
-            else if (itemActual.healAmount > 0)
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>(); //para mirar el código con la salud
-
-                if (playerHealth != null)
-                {
-                
-                    if (!playerHealth.IsMaxHealth) //si el jugador NO tiene la vida al tope te cura
-                    {
-                        Debug.Log($"Consumiendo ajo. Curando {itemActual.healAmount} de vida."); 
-
-                        playerHealth.Heal(itemActual.healAmount);
-
-                        inventory.RemoveAt(0);
-                    }
-                    else //si tiene la vida al tope no te cura
-                    {
-                        Debug.Log("I can't use this."); 
-                    }
-                }
+                itemActual = inventory.Find(i => i.healAmount > 0);
             }
-
-            #endregion
-
-            #region //////STAKE//////
-
-            //Alex
-            else if (itemActual.vampireSpeed > 0) // para la estaca
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
-
-                if (vampiro != null)
-                {
-                    UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
-
-                    if (agente != null)
-                    {
-                        StartCoroutine(SlowDown(agente)); // corutina para poder cambiar velocidad durante unos segundos
-                    }
-                }
-
+                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed > 0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed == 0);
             }
             #endregion
-
-            #region //////HOLYWATER//////
-            //Alex
-
-            else if (itemActual.distractedTime > 0 && itemActual.vampireSpeed > 0) // para el agua bendita
+            if (itemActual != null)
             {
-                GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+                #region //////BLOOD////// 
+                //Tom
 
-                if (vampiro != null)
+                if (itemActual.distractedTime > 0 && itemActual.vampireSpeed == 0)
                 {
-                    UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                    Debug.Log("Dejar en el suelo. Tiempo de distracción: " + itemActual.distractedTime);
 
-                    if (agente != null)
+                    GameObject spawnedVial = Instantiate(bloodVial, playerTransform.position, Quaternion.identity); // Dejar frasco en la posición donde estaba el jugador
+
+                    SphereCollider attractionArea = spawnedVial.AddComponent<SphereCollider>();  //Crear un collider para "cambiar el target" del NavMesh
+                    attractionArea.isTrigger = true;
+                    attractionArea.radius = 5f;
+                    spawnedVial.name = "BloodAttractionPoint";
+
+                    inventory.Remove(itemActual);
+                }
+                #endregion
+
+                #region /////GARLIC/////
+                //Tom
+
+                else if (itemActual.healAmount > 0)
+                {
+                    PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>(); //para mirar el código con la salud
+
+                    if (playerHealth != null)
                     {
-                        StartCoroutine(Angry(agente)); // corutina para poder cambiar velocidad durante unos segundos
+
+                        if (!playerHealth.IsMaxHealth) //si el jugador NO tiene la vida al tope te cura
+                        {
+                            Debug.Log($"Consumiendo ajo. Curando {itemActual.healAmount} de vida.");
+
+                            playerHealth.Heal(itemActual.healAmount);
+
+                            inventory.Remove(itemActual);
+                        }
+                        else //si tiene la vida al tope no te cura
+                        {
+                            Debug.Log("I can't use this.");
+                        }
                     }
                 }
+
+                #endregion
+
+                #region //////STAKE//////
+
+                //Alex
+                else if (itemActual.vampireSpeed > 0 && itemActual.distractedTime == 0) // para la estaca
+                {
+                    GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+
+                    if (vampiro != null)
+                    {
+                        UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+                        if (agente != null)
+                        {
+                            StartCoroutine(SlowDown(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                            inventory.Remove(itemActual);
+                        }
+                    }
+
+                }
+                #endregion
+
+                #region //////HOLYWATER//////
+                //Alex
+
+                else if (itemActual.distractedTime > 0 && itemActual.vampireSpeed > 0) // para el agua bendita
+                {
+                    GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+
+                    if (vampiro != null)
+                    {
+                        UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+                        if (agente != null)
+                        {
+                            StartCoroutine(Angry(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                            inventory.Remove(itemActual);
+                        }
+                    }
+                }
+                #endregion
             }
-            #endregion
         }
     }
 

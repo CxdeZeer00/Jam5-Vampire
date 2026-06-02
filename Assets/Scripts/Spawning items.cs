@@ -3,18 +3,10 @@ using UnityEngine;
 public class Spawningitems : MonoBehaviour
 {
     public Items itemData;
-
-    public GameObject[] availableItems;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (availableItems.Length > 0)
-        {
-            int randomItem = Random.Range(0, availableItems.Length);
-            Instantiate(availableItems[randomItem], transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
+        
     }
 
     // Update is called once per frame
