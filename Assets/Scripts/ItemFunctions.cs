@@ -33,7 +33,8 @@ public class ItemFunctions : MonoBehaviour
         {        
             Items itemActual = inventory[0];  // Primer ítem que haya en la lista de inventario
 
-            #region //////BLOOD//////
+            #region //////BLOOD////// 
+            //Tom
 
             if (itemActual.distractedTime > 0) 
             {
@@ -48,31 +49,38 @@ public class ItemFunctions : MonoBehaviour
 
                 inventory.RemoveAt(0); 
             }
-            #endregion
+            #endregion 
 
+            #region /////GARLIC/////
+            //Tom
 
-            #region  //////GARLIC//////
-
-            else if (itemActual.wearingTime > 0)
+            else if (itemActual.healAmount > 0)
             {
-                Debug.Log("Colgarte ajo. Tiempo de huída: " + itemActual.wearingTime);
+                PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>(); //para mirar el código con la salud
 
-                GameObject invisibleGarlic = new GameObject("ActiveGarlic"); //No vemos el ajo porque lo lleva puesto el player
-                invisibleGarlic.transform.SetParent(playerTransform); //"Pegar" ajo a player
-                invisibleGarlic.transform.localPosition = Vector3.zero;
+                if (playerHealth != null)
+                {
+                
+                    if (!playerHealth.IsMaxHealth) //si el jugador NO tiene la vida al tope te cura
+                    {
+                        Debug.Log($"Consumiendo ajo. Curando {itemActual.healAmount} de vida."); 
 
-                CircleCollider2D repulsionArea = invisibleGarlic.AddComponent<CircleCollider2D>(); //Crear un collider (de nuevo) que espanta al vampiro
-                repulsionArea.isTrigger = true;
-                repulsionArea.radius = 4f;
+                        playerHealth.Heal(itemActual.healAmount);
 
-                Destroy(invisibleGarlic, itemActual.wearingTime);
-
-                inventory.RemoveAt(0);
+                        inventory.RemoveAt(0);
+                    }
+                    else //si tiene la vida al tope no te cura
+                    {
+                        Debug.Log("I can't use this."); 
+                    }
+                }
             }
+
             #endregion
 
             #region //////STAKE//////
 
+            //Alex
             else if (itemActual.vampireSpeed > 0) // para la estaca
             {
                 GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
@@ -91,6 +99,8 @@ public class ItemFunctions : MonoBehaviour
             #endregion
 
             #region //////HOLYWATER//////
+            //Alex
+
             else if (itemActual.distractedTime > 0 && itemActual.vampireSpeed > 0) // para el agua bendita
             {
                 GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*

@@ -7820,7 +7820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Camera_Movement
   Speed: 150
   Player: {fileID: 1906312989}
-  pausemenu: {fileID: 1217932654}
 --- !u!1 &713650807
 GameObject:
   m_ObjectHideFlags: 0
@@ -23530,6 +23529,7 @@ GameObject:
   - component: {fileID: 1906312985}
   - component: {fileID: 1906312990}
   - component: {fileID: 1906312991}
+  - component: {fileID: 1906312992}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -23686,6 +23686,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Controller
   turnAround: {fileID: 712415883}
+--- !u!114 &1906312992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906312984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b42b14f9dddd24bb538cba2ece9c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  currentHealth: 100
+  vampireTransform: {fileID: 2034613428}
+  attackDistance: 1.5
+  damagePerSecond: 5
+  cooldownTime: 1
 --- !u!1 &1919502098
 GameObject:
   m_ObjectHideFlags: 0

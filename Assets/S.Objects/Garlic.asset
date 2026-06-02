@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ad9e70890281c418f21737b2fbfbf2, type: 3}
   m_Name: Garlic
   m_EditorClassIdentifier: Assembly-CSharp::Items
-  ObjectName: 
   distractedTime: 0
-  panicAmount: 0
+  healAmount: 25
+  healing: 0
+  vampireSpeed: 0
+  objectIcon: {fileID: 0}

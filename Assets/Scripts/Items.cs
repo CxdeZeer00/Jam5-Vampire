@@ -4,7 +4,7 @@ using UnityEngine;
 public class Items : ScriptableObject
 {
     public float distractedTime;
-    public float wearingTime;
+    public float healAmount;
     public float healing;
     public float vampireSpeed;
     public Sprite objectIcon;
