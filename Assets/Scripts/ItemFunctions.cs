@@ -43,19 +43,19 @@ public class ItemFunctions : MonoBehaviour
             //hagamos q el player tenga elección en qué item usar (numericos)
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed == 0);
+                itemActual = inventory.Find(i => i.type==KindOfItem.Stake);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                itemActual = inventory.Find(i => i.vampireSpeed > 0 && i.distractedTime == 0);
+                itemActual = inventory.Find(i => i.type == KindOfItem.Garlic);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                itemActual = inventory.Find(i => i.healAmount > 0);
+                itemActual = inventory.Find(i => i.type == KindOfItem.HolyWater);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed > 0);
+                itemActual = inventory.Find(i => i.type == KindOfItem.BloodVial);
             }
             #endregion
             if (itemActual != null)
@@ -233,30 +233,24 @@ public class ItemFunctions : MonoBehaviour
     public void PickItem(Items newItem) //Zoe
     {
         inventory.Add(newItem);
-        Debug.Log($"[MOCHILA] Guardado con éxito. Total de ítems en mochila: {inventory.Count}");
         if (newItem.type == KindOfItem.BloodVial)
         {
-            Debug.Log("-> UI: Activando imagen de la Sangre");
             if (slotBloodVial != null) slotBloodVial.SetActive(true);
         }
         else if (newItem.type == KindOfItem.Garlic)
         {
-            Debug.Log("-> UI: Activando imagen del Ajo");
             if (slotGarlic != null) slotGarlic.SetActive(true);
         }
         else if (newItem.type == KindOfItem.Stake)
         {
-            Debug.Log("-> UI: Activando imagen de la Estaca");
             if (slotStake != null) slotStake.SetActive(true);
         }
         else if (newItem.type == KindOfItem.HolyWater)
         {
-            Debug.Log("-> UI: Activando imagen del Agua Bendita");
             if (slotHolyWater != null) slotHolyWater.SetActive(true);
         }
         else if (newItem.type == KindOfItem.Key)
         {
-            Debug.Log("-> UI: Activando imagen de la Llave ¡A ESCAPAR!");
             if (slotKey != null) slotKey.SetActive(true);
         }
     }
