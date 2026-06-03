@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour //Tom 
 {
 
     public float maxHealth = 100f;
     public float currentHealth;
+    public Slider healthBarSlider;
 
     public Transform vampireTransform;
 
@@ -24,6 +26,12 @@ public class PlayerHealth : MonoBehaviour //Tom
     {
         currentHealth = maxHealth;
         deathPopUp.SetActive(false);
+
+        if (healthBarSlider != null)
+        {
+            healthBarSlider.maxValue = maxHealth;
+            healthBarSlider.value = currentHealth;
+        }
     }
 
     // Update is called once per frame
@@ -61,6 +69,11 @@ public class PlayerHealth : MonoBehaviour //Tom
         if (currentHealth < 0f) //Para no dejar al player estar en números negativos 
         {
             currentHealth = 0f;
+        }
+
+        if (healthBarSlider != null)
+        {
+            healthBarSlider.value = currentHealth;
         }
 
         if (currentHealth == 0f)

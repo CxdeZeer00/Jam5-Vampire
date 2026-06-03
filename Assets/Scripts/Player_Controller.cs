@@ -4,14 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour  //Paula Pinilla
 {
+    private Rigidbody rb;
+
     [Header("Movement")]
-    float speed = 0.3f;
+    float speed = 5f;
 
     [Header("Turn Around")]
     public Transform turnAround;    //meter aquí la cámara del jugador para que haga simulación de darse la vuelta
     float turnSpeed = 5f;    //a qué velocidad se va a girar el personaje
     private float originalAngle = 0f;   //el ángulo al que se encuentra actualmente es 0 / de frente
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         Movement();
@@ -26,18 +32,18 @@ public class Player_Controller : MonoBehaviour  //Paula Pinilla
 
         Vector3 moveDirection = transform.forward * zDirection + transform.right * xDirection;
 
-        GetComponent<Rigidbody>().MovePosition(transform.position +  moveDirection * speed);
+        rb.MovePosition(rb.position + moveDirection * speed * Time.deltaTime);
     }
 
     void Run() 
     {
         if (Input.GetKeyDown(KeyCode.LeftShift)) 
         {
-            speed = 0.6f;
+            speed = 10f;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 0.3f;
+            speed = 5f;
         }
     }
 
