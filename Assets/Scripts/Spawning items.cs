@@ -3,6 +3,7 @@ using UnityEngine;
 public class Spawningitems : MonoBehaviour
 {
     public Items itemData;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +18,7 @@ public class Spawningitems : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+
         Debug.Log("Algo ha entrado en mi zona: " + collision.gameObject.name);
         if (collision.CompareTag("Player"))
         {

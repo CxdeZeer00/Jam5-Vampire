@@ -128,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawningitems
   itemData: {fileID: 11400000, guid: 25d7f228f7a3ec544b43082279a1ee6a, type: 2}
+  pickUp: {fileID: 8300000, guid: 514c8440ebaa6e547a3c280e562b66a2, type: 3}

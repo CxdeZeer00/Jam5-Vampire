@@ -14,6 +14,9 @@ public class Player_Controller : MonoBehaviour  //Paula Pinilla
     float turnSpeed = 5f;    //a qué velocidad se va a girar el personaje
     private float originalAngle = 0f;   //el ángulo al que se encuentra actualmente es 0 / de frente
 
+    public AudioClip footstepSound;
+    public AudioClip turnSound;
+    private float footstepTimer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +36,20 @@ public class Player_Controller : MonoBehaviour  //Paula Pinilla
         Vector3 moveDirection = transform.forward * zDirection + transform.right * xDirection;
 
         rb.MovePosition(rb.position + moveDirection * speed * Time.deltaTime);
+
+        if (moveDirection.magnitude > 0.1f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                if (footstepSound != null) AudioSource.PlayClipAtPoint(footstepSound, transform.position);
+                footstepTimer = (speed > 6f) ? 0.3f : 0.5f;
+            }
+        }
+        else 
+        { 
+            footstepTimer = 0f; 
+        }
     }
 
     void Run() 
@@ -50,6 +67,12 @@ public class Player_Controller : MonoBehaviour  //Paula Pinilla
     void TurnAround() 
     {
         if (turnAround == null) return; //si la cámara no está asignada evitará que el juego se paralice
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (turnSound != null) AudioSource.PlayClipAtPoint(turnSound, transform.position);
+        }
+
         float backAngle = Input.GetKey(KeyCode.F) ? 180f : 0f;  //al pulsar la F, la cámara girará 180º. Si se deja de pulsar vuelve a 0
         originalAngle = Mathf.LerpAngle(originalAngle, backAngle, Time.deltaTime * turnSpeed);  //la transición entre ángulo original y ángulo de espaldas
         turnAround.localRotation = Quaternion.Euler(turnAround.localRotation.eulerAngles.x, originalAngle, 0f); //se aplica el giro para no romperlo si se mira a otro lugar

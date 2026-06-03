@@ -7,8 +7,6 @@ using UnityEngine.AI;
 
 public class ItemFunctions : MonoBehaviour
 {
-   
-    //Sangre obliga a acercarse al punto donde se deja, ajo obliga a huir de ti mientras lo llevas puesto
     public List <Items> inventory = new List<Items>();
 
     [Header("---Canva Inventory---")]
@@ -45,108 +43,124 @@ public class ItemFunctions : MonoBehaviour
             //hagamos q el player tenga elección en qué item usar (numericos)
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                itemActual = inventory.Find(i => i.vampireSpeed > 0 && i.distractedTime == 0);
+                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed == 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                itemActual = inventory.Find(i => i.healAmount > 0);
+                itemActual = inventory.Find(i => i.vampireSpeed > 0 && i.distractedTime == 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed > 0);
+                itemActual = inventory.Find(i => i.healAmount > 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed == 0);
+                itemActual = inventory.Find(i => i.distractedTime > 0 && i.vampireSpeed > 0);
             }
             #endregion
             if (itemActual != null)
             {
-                #region //////BLOOD////// 
+                #region /////BLOOD/////
                 //Tom
 
                 if (itemActual.distractedTime > 0 && itemActual.vampireSpeed == 0)
                 {
-                    Debug.Log("Dejar en el suelo. Tiempo de distracción: " + itemActual.distractedTime);
+                    Debug.Log("Dropping on the ground. Distraction time: " + itemActual.distractedTime); //Accedemos al objeto scripteable pa saber los segundos que se queda parado el señor colmillos
 
-                    GameObject spawnedVial = Instantiate(bloodVial, playerTransform.position, Quaternion.identity); // Dejar frasco en la posición donde estaba el jugador
+                    GameObject attractionPoint = new GameObject("BloodAttractionPoint");
+                    attractionPoint.transform.position = playerTransform.position;
 
-                    SphereCollider attractionArea = spawnedVial.AddComponent<SphereCollider>();  //Crear un collider para "cambiar el target" del NavMesh
-                    attractionArea.isTrigger = true;
-                    attractionArea.radius = 5f;
-                    spawnedVial.name = "BloodAttractionPoint";
+                    GameObject vampireGo = GameObject.FindWithTag("Vampire"); 
+                    if (vampireGo != null)
+                    {
+                        UnityEngine.AI.NavMeshAgent vampireAgent = vampireGo.GetComponent<UnityEngine.AI.NavMeshAgent>(); //Por no tocar el código del Nav Mesh que me da miedo liarla
 
-                    inventory.Remove(itemActual);
-                    slotBloodVial.SetActive(false);
+                        if (vampireAgent != null)
+                        {
+                            StartCoroutine(ForceVampireDestination(vampireAgent, attractionPoint.transform.position, itemActual.distractedTime));
+                        }
+                    }
+
+                    inventory.Remove(itemActual); 
+
+                    if (slotBloodVial != null)
+                    {
+                        slotBloodVial.SetActive(false);
+                    }
                 }
                 #endregion
 
                 #region /////GARLIC/////
                 //Tom
 
-                else if (itemActual.healAmount > 0)
+                if (itemActual.healAmount > 0)
                 {
-                    PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>(); //para mirar el código con la salud
-
+                    PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>();
                     if (playerHealth != null)
                     {
-
-                        if (!playerHealth.IsMaxHealth) //si el jugador NO tiene la vida al tope te cura
+                        if (!playerHealth.IsMaxHealth)
                         {
                             Debug.Log($"Consumiendo ajo. Curando {itemActual.healAmount} de vida.");
-
                             playerHealth.Heal(itemActual.healAmount);
 
                             inventory.Remove(itemActual);
                             slotGarlic.SetActive(false);
                         }
-                        else //si tiene la vida al tope no te cura
+                        else
                         {
-                            Debug.Log("I can't use this.");
+                            Debug.Log("I can't use this. Vida al tope.");
                         }
                     }
                 }
 
                 #endregion
 
-                #region //////STAKE//////
-
+                #region /////STAKE/////
                 //Alex
-                else if (itemActual.vampireSpeed > 0 && itemActual.distractedTime == 0) // para la estaca
+
+                if (itemActual.vampireSpeed > 0 && itemActual.distractedTime == 0) // para la estaca
                 {
-                    GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+                    GameObject vampireGo = GameObject.FindWithTag("Vampire");
 
-                    if (vampiro != null)
+                    if (vampireGo != null)
                     {
-                        UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                        UnityEngine.AI.NavMeshAgent vampireAgent = vampireGo.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-                        if (agente != null)
+                        if (vampireAgent != null)
                         {
-                            StartCoroutine(SlowDown(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                            StartCoroutine(SlowDown(vampireAgent));
+
                             inventory.Remove(itemActual);
-                            slotStake.SetActive(false);
+
+                            if (slotStake != null)
+                            {
+                                slotStake.SetActive(false);
+                            }
                         }
                     }
-
                 }
                 #endregion
 
-                #region //////HOLYWATER//////
+                #region /////HOLYWATER/////
                 //Alex
 
-                else if (itemActual.distractedTime > 0 && itemActual.vampireSpeed > 0) // para el agua bendita
+                else if (itemActual.vampireSpeed > 0 && itemActual != inventory.Find(i => i.distractedTime == 0 && i.vampireSpeed > 0))
                 {
-                    GameObject vampiro = GameObject.FindWithTag("Vampire"); // *REVISAR*
+                    GameObject vampiGo = GameObject.FindWithTag("Vampire");
 
-                    if (vampiro != null)
+                    if (vampiGo != null)
                     {
-                        UnityEngine.AI.NavMeshAgent agente = vampiro.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                        UnityEngine.AI.NavMeshAgent agente = vampiGo.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
                         if (agente != null)
                         {
-                            StartCoroutine(Angry(agente)); // corutina para poder cambiar velocidad durante unos segundos
+                            StartCoroutine(Angry(agente));
+
                             inventory.Remove(itemActual);
-                            slotHolyWater.SetActive(false);
+                            if (slotHolyWater != null)
+                            {
+                                slotHolyWater.SetActive(false);
+                            }
                         }
                     }
                 }
@@ -156,28 +170,63 @@ public class ItemFunctions : MonoBehaviour
         }
     }
 
-    IEnumerator SlowDown(UnityEngine.AI.NavMeshAgent agente)
+    private System.Collections.IEnumerator SlowDown(UnityEngine.AI.NavMeshAgent agent) //Corrutina de estaca, Alex
     {
-        agente.speed = 3.5f;
-        yield return new WaitForSeconds(2f); // espera 2 segundos y recupera su velocidad inicial
-        if (agente != null)
-        {
-            agente.speed = 7f;
-        }
+        float originalSpeed = agent.speed;
+
+        agent.speed = 3.5f; //Reduce la velocidad
+
+        yield return new WaitForSeconds(2f); //Espera 2 segundos
+
+        agent.speed = originalSpeed; //Vuelve a la de antes
     }
 
-    IEnumerator Angry(UnityEngine.AI.NavMeshAgent agente)
+    private System.Collections.IEnumerator Angry(UnityEngine.AI.NavMeshAgent agent) //Corrutina de agua bendita, Alex
     {
-        agente.speed = 0;
-        yield return new WaitForSeconds(2f); // espera 2 segundos y acelera
-        if (agente != null)
+        float originalSpeed = agent.speed;
+        float elapsed = 0f;
+
+        while (elapsed < 2f) //Ralentizar 2 seg
         {
-            agente.speed = 10.5f;
-            yield return new WaitForSeconds(2f); // vuelve a esperar 2 segundos y recupera su velocidad inicial
-            if (agente != null)
+            if (agent != null)
             {
-                agente.speed = 7f;
+                agent.speed = 2f; 
             }
+            elapsed += Time.deltaTime;
+            yield return null; //Espera al siguiente frame
+        }
+
+        elapsed = 0f;   //Reinicia el temporizador
+
+        while (elapsed < 2f) //Acelerar 2 seg
+        {
+            if (agent != null)
+            {
+                agent.speed = originalSpeed + 2f; // Le obligamos a ir más rápido
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (agent != null)
+        {
+            agent.speed = originalSpeed;
+        }
+    }
+
+    private System.Collections.IEnumerator ForceVampireDestination(UnityEngine.AI.NavMeshAgent agent, Vector3 targetPos, float duration) //Corrutina de sangre, Tom
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration) 
+        {
+            if (agent != null) 
+            {
+                agent.SetDestination(targetPos); //Obliga al Nav Mesh a ir a por la sangre donde la sueltas
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null; 
         }
     }
 

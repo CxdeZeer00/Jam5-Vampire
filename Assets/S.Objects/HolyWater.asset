@@ -16,5 +16,5 @@ MonoBehaviour:
   distractedTime: 2
   healAmount: 0
   healing: 0
-  vampireSpeed: 0
+  vampireSpeed: 4
   objectIcon: {fileID: -1959546211, guid: 49f0a660aff77d74ca45665fde9e8393, type: 3}

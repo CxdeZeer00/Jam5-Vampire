@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour //Tom
     public float attackDistance = 0.5f; //te alcanza aunque haya un poquito de distancia para un poco más de dificultad
 
     public float damagePerSecond = 15f;
+    public AudioClip ouch;
+    public AudioClip health;
     public bool IsMaxHealth => currentHealth >= maxHealth; //Función pal Garlic
 
 
@@ -76,22 +78,39 @@ public class PlayerHealth : MonoBehaviour //Tom
             healthBarSlider.value = currentHealth;
         }
 
+        if (ouch != null)
+        {
+            AudioSource.PlayClipAtPoint(ouch, transform.position);
+        }
+
         if (currentHealth == 0f)
         {
             Debug.Log("U died.");  //Zeeroo
             Death();
         }
     }
-    public void Heal(float healing) //Garlic
+    public void Heal(float healingPercentage) //Garlic
     {
-        currentHealth += healing;
+        float healthPoints = maxHealth * (healingPercentage / 100f); //Curar un porcentaje, no un número exacto
+
+        currentHealth += healthPoints;
 
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
 
-        Debug.Log("Healed.");
+        if (healthBarSlider != null) //que se vea en la barra de vida tmb
+        {
+            healthBarSlider.value = currentHealth;
+        }
+
+        if (health != null)
+        {
+            AudioSource.PlayClipAtPoint(health, transform.position);
+        }
+
+        Debug.Log("Healed. Current Health: " + currentHealth);
     }
 
     void Death() //Zoe García

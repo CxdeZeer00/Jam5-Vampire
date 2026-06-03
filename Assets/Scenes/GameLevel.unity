@@ -6081,8 +6081,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -425}
-  m_SizeDelta: {x: -1219.1648, y: -917.1721}
+  m_AnchoredPosition: {x: 0, y: -411.5568}
+  m_SizeDelta: {x: -1219.1648, y: -897.7018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498350331
 MonoBehaviour:
@@ -25273,6 +25273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Controller
   turnAround: {fileID: 712415883}
+  footstepSound: {fileID: 8300000, guid: 0e19a2ebe8b8f694599c777f89ec60ff, type: 3}
+  turnSound: {fileID: 8300000, guid: 93395c636772b64488fafb14944e401a, type: 3}
 --- !u!114 &1906312992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25289,8 +25291,10 @@ MonoBehaviour:
   currentHealth: 100
   healthBarSlider: {fileID: 1747889199}
   vampireTransform: {fileID: 2034613428}
-  attackDistance: 1.5
+  attackDistance: 0.5
   damagePerSecond: 15
+  ouch: {fileID: 8300000, guid: 87f5a99acdf97e64e9302c4dc6c0cf13, type: 3}
+  health: {fileID: 8300000, guid: d42d0fda310ef104b9316fafb8c9a357, type: 3}
   cooldownTime: 1
   deathPopUp: {fileID: 156428206}
 --- !u!114 &1906312993
