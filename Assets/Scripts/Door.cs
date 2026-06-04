@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private Animator animator;
-    private bool isPlayerInside = false;
+    private ItemFunctions inventarioScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        animator = GetComponent<Animator>();
+        inventarioScript = Object.FindFirstObjectByType<ItemFunctions>();
     }
 
     // Update is called once per frame
@@ -15,14 +14,23 @@ public class Door : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            isPlayerInside = true;
+    {        
+        if (other.CompareTag("Player") && inventarioScript != null)
+        {           
+            inventarioScript.SetJugadorDentro(true, GetComponent<Animator>());
+            Debug.Log("Puerta: El jugador ha entrado. Avisando al inventario.");
+        }
+    }
 
-            animator.Play("Puerta");            
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && inventarioScript != null)
+        {
+            // Le decimos al script de inventario que el jugador se ha ido
+            inventarioScript.SetJugadorDentro(false, null);
+            Debug.Log("Puerta: El jugador se ha ido. Avisando al inventario.");
         }
     }
 }

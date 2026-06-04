@@ -16,6 +16,9 @@ public class ItemFunctions : MonoBehaviour
     public GameObject slotBloodVial;
     public GameObject slotKey;
 
+    private bool jugadorDentro = false;
+    private Animator puertaAnimator;
+
     public GameObject bloodVial;
     public GameObject HolyWater;
     private Transform playerTransform; //Saber dónde está el jugador
@@ -56,6 +59,10 @@ public class ItemFunctions : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 itemActual = inventory.Find(i => i.type == KindOfItem.BloodVial);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                itemActual = inventory.Find(i => i.type == KindOfItem.Key);                
             }
             #endregion
             if (itemActual != null)
@@ -166,6 +173,27 @@ public class ItemFunctions : MonoBehaviour
                 }
                 #endregion
 
+                else if (itemActual.isKey == true)
+                {                    
+                    if (jugadorDentro == true)
+                    {
+                        puertaAnimator.SetTrigger("Abrir");
+
+                        inventory.Remove(itemActual);
+
+                        if (slotKey != null)
+                        {
+                            slotKey.SetActive(false);
+                        }
+                        Debug.Log("Puerta abierta");
+                        itemActual = null;
+                    }
+                    else 
+                    {
+                        Debug.Log("Has intentado usar la llave, pero no estás en la puerta.");
+                        itemActual = null;
+                    }
+                }
             }
         }
     }
@@ -253,5 +281,30 @@ public class ItemFunctions : MonoBehaviour
         {
             if (slotKey != null) slotKey.SetActive(true);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Puerta"))
+        {
+            jugadorDentro = true;
+            puertaAnimator = other.GetComponent<Animator>();
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Puerta"))
+        {
+            jugadorDentro = false;
+            puertaAnimator = null;            
+        }
+    }
+
+    public void SetJugadorDentro(bool estado, Animator animatorDeLaPuerta)
+    {
+        jugadorDentro = estado;
+        puertaAnimator = animatorDeLaPuerta;
     }
 }

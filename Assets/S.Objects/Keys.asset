@@ -18,3 +18,4 @@ MonoBehaviour:
   healing: 0
   vampireSpeed: 0
   objectIcon: {fileID: 1686600925, guid: 49f0a660aff77d74ca45665fde9e8393, type: 3}
+  isKey: 1

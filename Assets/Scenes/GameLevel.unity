@@ -697,6 +697,8 @@ GameObject:
   - component: {fileID: 95913318}
   - component: {fileID: 95913317}
   - component: {fileID: 95913320}
+  - component: {fileID: 95913322}
+  - component: {fileID: 95913321}
   m_Layer: 0
   m_Name: Puerta izq
   m_TagString: Untagged
@@ -820,6 +822,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &95913321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95913315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000002, y: 13.590616, z: 19.675848}
+  m_Center: {x: 5.325136e-11, y: 6.7949095, z: 4.837925}
+--- !u!114 &95913322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95913315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baabc6ff60addb141bb33f16f9946d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
 --- !u!1 &99938841
 GameObject:
   m_ObjectHideFlags: 0
@@ -10471,7 +10506,6 @@ Transform:
   m_Children:
   - {fileID: 1702246869}
   - {fileID: 969553460}
-  - {fileID: 1454967036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &889170789
@@ -19709,59 +19743,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441411550}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1454967035
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1454967036}
-  - component: {fileID: 1454967037}
-  m_Layer: 0
-  m_Name: Collider abrir puerta
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1454967036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454967035}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71.36, y: 0.725, z: -12.67}
-  m_LocalScale: {x: 19.475834, y: 1.274, z: 15.587547}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 888883080}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1454967037
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454967035}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1461761999
 GameObject:
   m_ObjectHideFlags: 0
@@ -25386,12 +25367,10 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   healthBarSlider: {fileID: 1747889199}
-  vampireTransform: {fileID: 2034613428}
-  attackDistance: 0.5
   damagePerSecond: 15
   ouch: {fileID: 8300000, guid: 87f5a99acdf97e64e9302c4dc6c0cf13, type: 3}
   health: {fileID: 8300000, guid: d42d0fda310ef104b9316fafb8c9a357, type: 3}
-  cooldownTime: 1
+  cooldownTime: 3
   deathPopUp: {fileID: 156428206}
 --- !u!114 &1906312993
 MonoBehaviour:
@@ -27535,6 +27514,7 @@ GameObject:
   - component: {fileID: 2034613424}
   - component: {fileID: 2034613423}
   - component: {fileID: 2034613422}
+  - component: {fileID: 2034613429}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Vampire
@@ -27641,6 +27621,27 @@ Transform:
   - {fileID: 1003160855}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2034613429
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034613421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.9928999
+  m_Center: {x: -0.5808239, y: 0, z: 0.912076}
 --- !u!1 &2037947040
 GameObject:
   m_ObjectHideFlags: 0

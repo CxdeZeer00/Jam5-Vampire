@@ -8,10 +8,6 @@ public class PlayerHealth : MonoBehaviour //Tom
     public float currentHealth;
     public Slider healthBarSlider;
 
-    public Transform vampireTransform;
-
-    public float attackDistance = 0.5f; //te alcanza aunque haya un poquito de distancia para un poco más de dificultad
-
     public float damagePerSecond = 15f;
     public AudioClip ouch;
     public AudioClip health;
@@ -39,29 +35,19 @@ public class PlayerHealth : MonoBehaviour //Tom
     // Update is called once per frame
     void Update()
     {
-        if (vampireTransform == null)
-        {
-            GameObject vampireObject = GameObject.Find("Vampire");
-
-            if (vampireObject != null)
-            {
-                vampireTransform = vampireObject.transform;
-            }
-        }
         if (cooldownTimer > 0f)
         {
             cooldownTimer -= Time.deltaTime;
         }
+               
+    }
 
-        if (vampireTransform != null)
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Vampire") && cooldownTimer <= 0f)
         {
-            float distance = Vector2.Distance(transform.position, vampireTransform.position); //Hace daño un segundo, hace cooldown otro segundo
-
-            if (distance <= attackDistance && cooldownTimer <= 0f)
-            {
-                TakeDamage(damagePerSecond); 
-                cooldownTimer = cooldownTime; 
-            }
+            TakeDamage(damagePerSecond);
+            cooldownTimer = cooldownTime;
         }
     }
     public void TakeDamage(float damage)

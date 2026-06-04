@@ -10,4 +10,5 @@ public class Items : ScriptableObject
     public float healing;
     public float vampireSpeed;
     public Sprite objectIcon;
+    public bool isKey;
 }
