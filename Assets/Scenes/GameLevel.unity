@@ -8302,6 +8302,9 @@ GameObject:
   - component: {fileID: 604184695}
   - component: {fileID: 604184694}
   - component: {fileID: 604184693}
+  - component: {fileID: 604184698}
+  - component: {fileID: 604184697}
+  - component: {fileID: 604184696}
   m_Layer: 0
   m_Name: Plane (127)
   m_TagString: Untagged
@@ -8403,6 +8406,61 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604184691}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &604184696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604184691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baabc6ff60addb141bb33f16f9946d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+--- !u!65 &604184697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604184691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 9.246505, z: 10.997164}
+  m_Center: {x: 0, y: 4.1385603, z: -0.49858823}
+--- !u!95 &604184698
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604184691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55aa3e03b757c6c49a859dc6339e10eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &608986397
 GameObject:
   m_ObjectHideFlags: 0
@@ -19544,7 +19602,7 @@ Transform:
   m_GameObject: {fileID: 1376608383}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: 89.42, y: 5, z: 35.32}
+  m_LocalPosition: {x: 89.1, y: 4.9999986, z: 34.989998}
   m_LocalScale: {x: 1, y: 1, z: 1.1525999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19980,7 +20038,6 @@ GameObject:
   - component: {fileID: 1398571490}
   - component: {fileID: 1398571489}
   - component: {fileID: 1398571488}
-  - component: {fileID: 1398571487}
   m_Layer: 0
   m_Name: Plane (53)
   m_TagString: Untagged
@@ -20003,18 +20060,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2121948242}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 90}
---- !u!114 &1398571487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398571485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a564c6a71caf848a8abd14423b8dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AbrirPuerta
 --- !u!64 &1398571488
 MeshCollider:
   m_ObjectHideFlags: 0
