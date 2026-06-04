@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49f0a660aff77d74ca45665fde9e8393
+guid: 3de20308f7204134c8218e333f4f9347
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: inventory-Photoroom_0
+      name: inventory_0
       rect:
         serializedVersion: 2
-        x: 215
-        y: 519
+        x: 210
+        y: 524
         width: 1492
-        height: 369
+        height: 370
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efaa34a9d6e7ff64d8a81fec97853b74
-      internalID: -616438429
+      spriteID: 3dc45d7c104ad88448ae6449cafd7dab
+      internalID: 1060770398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inventory-Photoroom_1
+      name: inventory_1
       rect:
         serializedVersion: 2
         x: 279
-        y: 203
+        y: 212
         width: 182
-        height: 236
+        height: 227
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,19 +134,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 817c7604e1c8f244c8a731c3a3bebaae
-      internalID: 2124609728
+      spriteID: dde97e945982bf144a898fd051ce7563
+      internalID: -1081067603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inventory-Photoroom_4
+      name: inventory_4
       rect:
         serializedVersion: 2
         x: 571
         y: 230
-        width: 174
+        width: 173
         height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc3f58b60ab8e9c4c8d9c18859fd6c67
-      internalID: 1793193429
+      spriteID: 8d2c07459ef7a4842bad5eae73b1011b
+      internalID: -849256812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inventory-Photoroom_5
+      name: inventory_5
       rect:
         serializedVersion: 2
         x: 899
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72ef7537f15a4ff45a9884270e7b750c
-      internalID: -1959546211
+      spriteID: 71929caf79f3d8141bb9dbedd60cbcd3
+      internalID: 818785396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inventory-Photoroom_6
+      name: inventory_6
       rect:
         serializedVersion: 2
         x: 1186
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9f94064c3462b4fadd8f1575983edc
-      internalID: 1680443017
+      spriteID: 01bcf8f75a926a14783905d253dd9d0b
+      internalID: 1605896267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: inventory-Photoroom_7
+      name: inventory_7
       rect:
         serializedVersion: 2
         x: 1417
-        y: 231
-        width: 206
-        height: 202
+        y: 232
+        width: 212
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95c307683b2fb4745843f2fe22f0d6ac
-      internalID: 1686600925
+      spriteID: ea59e2a2fd5a3b840853d667eb756ae4
+      internalID: 1180782031
       vertices: []
       indices: 
       edges: []
@@ -232,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6f8fdfd99039cec4ea59438a79e2a650
+    spriteID: f99c3672b76227540a8e47d7c0b17094
     internalID: 0
     vertices: []
     indices: 
@@ -244,14 +244,15 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      inventory-Photoroom_0: -616438429
-      inventory-Photoroom_1: 2124609728
-      inventory-Photoroom_2: 1156121049
-      inventory-Photoroom_3: -967873108
-      inventory-Photoroom_4: 1793193429
-      inventory-Photoroom_5: -1959546211
-      inventory-Photoroom_6: 1680443017
-      inventory-Photoroom_7: 1686600925
+      inventory_0: 1060770398
+      inventory_1: -1081067603
+      inventory_2: 1891517344
+      inventory_3: -895509293
+      inventory_4: -849256812
+      inventory_5: 818785396
+      inventory_6: 1605896267
+      inventory_7: 1180782031
+      inventory_8: 1797806834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

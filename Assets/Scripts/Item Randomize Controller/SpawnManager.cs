@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour //Zoe García
 {
     public GameObject keyPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

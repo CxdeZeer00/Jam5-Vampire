@@ -4,6 +4,8 @@ public class Spawningitems : MonoBehaviour
 {
     public Items itemData;
 
+    public ItemSpawner spawnOrigin;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,7 +32,10 @@ public class Spawningitems : MonoBehaviour
                 // Añadimos los DATOS a la lista del inventario
                 mochila.PickItem(itemData);
                 Debug.Log("Recogido: " + itemData.name);
-
+                if(spawnOrigin != null)
+                {
+                    spawnOrigin.RespawnObjects();
+                }
                 Destroy(gameObject);
             }
         }
