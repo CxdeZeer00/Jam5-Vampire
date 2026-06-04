@@ -50,4 +50,13 @@ public class Button_Controller : MonoBehaviour //Zoe García
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("Final");
+        }
+    }
+
 }

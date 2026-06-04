@@ -13,6 +13,7 @@ public class Camera_Movement : MonoBehaviour    //Paula Pinilla
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         Speed = PlayerPrefs.GetFloat("SensivityCamera", 100f); //PlayerPrefs.Get__(string key, __ value);  si no encuentra lo q le pedimos, te devolverá lo q le hayas puesto último (...__ value…)
         //Zoe García ^^^
 
